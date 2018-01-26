@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import fire from './fire';
 import CreateComment from './CreateComment'
-import FacebookProvider, { Share } from 'react-facebook';
+import FacebookProvider, { Share, Feed } from 'react-facebook';
 
 class DisplayAll extends Component {
   constructor(props) {
