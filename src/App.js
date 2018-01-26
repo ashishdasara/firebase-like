@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import fire from './fire';
 import CreateComment from './CreateComment'
-import FacebookProvider, { Share, Feed } from 'react-facebook';
+import FacebookProvider, { Share, Feed, Like } from 'react-facebook';
 
 class DisplayAll extends Component {
   constructor(props) {
@@ -28,15 +28,22 @@ class DisplayAll extends Component {
 }
 
 class DisplayComment extends React.Component {
+
   render() {
     return(
+
       <div className="container display_comment">
         <p>{this.props.comment.text}</p>
-        <FacebookProvider appId="334164410431105">
-        <Share quote={this.props.comment.text}>
-          <button type="button">Share</button>
-        </Share>
-      </FacebookProvider>
+        <div>
+          {/* <button>Like</button> */}
+          <FacebookProvider appId="334164410431105">
+            <Share quote={this.props.comment.text}>
+              <button className="btn btn-small" type="button">
+                <i class="fa fa-facebook"></i> share
+              </button>
+            </Share>
+          </FacebookProvider>
+        </div>
       </div>
     );
   }
