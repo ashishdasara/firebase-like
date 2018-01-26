@@ -33,7 +33,7 @@ class DisplayComment extends React.Component {
       <div className="container display_comment">
         <p>{this.props.comment.text}</p>
         <FacebookProvider appId="334164410431105">
-        <Share href="#" quote={this.props.comment.text}>
+        <Share quote={this.props.comment.text}>
           <button type="button">Share</button>
         </Share>
       </FacebookProvider>
