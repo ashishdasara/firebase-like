@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import fire from './fire';
 import CreateComment from './CreateComment'
+import FacebookProvider, { Share } from 'react-facebook';
 
 class DisplayAll extends Component {
   constructor(props) {
@@ -31,6 +32,11 @@ class DisplayComment extends React.Component {
     return(
       <div className="container display_comment">
         <p>{this.props.comment.text}</p>
+        <FacebookProvider appId="334164410431105">
+        <Share href="http://www.facebook.com">
+          <button type="button">Share</button>
+        </Share>
+      </FacebookProvider>
       </div>
     );
   }
@@ -44,7 +50,7 @@ class App extends React.Component {
       items: []
     }
   }
-  
+
   componentWillMount() {
     let newComments=this.state.comments;
     this.firebaseRef = fire.database().ref("comments");
