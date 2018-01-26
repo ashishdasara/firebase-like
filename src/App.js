@@ -29,17 +29,50 @@ class DisplayAll extends Component {
 
 class DisplayComment extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state={
+      comment: {
+        text: "",
+        id: 0,
+        properties: {
+          likes: 0,
+          shares: 0
+        }
+      }
+    };
+    this.hitLike = this.hitLike.bind(this);
+  }
+
+  componentWillMount() {
+    let newComment = this.props.comment;
+    this.setState({comment: newComment});
+  }
+  //
+  hitLike(e) {
+    e.preventDefault();
+    let currentComment=this.state.comment;
+    currentComment.properties.likes+=1;
+    this.setState({comment: currentComment});
+    this.firebaseRef = fire.database().ref("comments");
+    this.firebaseRef.child(this.state.comment.id).set(this.state.comment
+    );
+  }
+
   render() {
     return(
 
       <div className="container display_comment">
-        <p>{this.props.comment.text}</p>
+        <p>{this.state.comment.text}</p>
         <div>
-          {/* <button>Like</button> */}
+          <span>{this.state.comment.properties.likes} people like this </span>
+          <button onClick={this.hitLike}>
+            <span className="glyphicon glyphicon-thumbs-up"></span>
+          </button>
           <FacebookProvider appId="334164410431105">
-            <Share quote={this.props.comment.text}>
-              <button className="btn btn-small" type="button">
-                <i class="fa fa-facebook"></i> share
+            <Share quote={this.state.comment.text}>
+              <button>
+                <i className="fa fa-facebook"></i>
               </button>
             </Share>
           </FacebookProvider>
