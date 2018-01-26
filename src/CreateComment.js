@@ -18,6 +18,7 @@ class CreateComment extends React.Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
+    this.titleCase = this.titleCase.bind(this);
 
   }
   componentWillReceiveProps(nextProps) {
@@ -39,9 +40,16 @@ class CreateComment extends React.Component {
     this.setState({comment: newComment});
   }
 
+  titleCase(str) {
+    str=str.split('');
+    str[0]=str[0].toUpperCase();
+    return str.join('');
+  }
+
   handleTextChange = (e) => {
     var newComment=this.state.comment;
-    newComment.text = e.target.value;
+    var text = this.titleCase(e.target.value);
+    newComment.text = text;
     this.setState({comment: newComment});
   }
   render() {
