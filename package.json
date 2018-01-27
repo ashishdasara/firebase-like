@@ -9,6 +9,7 @@
     "react-drag-and-drop": "^2.4.0",
     "react-facebook": "^4.2.1",
     "react-scripts": "1.1.0",
+    "react-twitter-widgets": "^1.7.1",
     "reactfire": "^1.0.0"
   },
   "scripts": {
